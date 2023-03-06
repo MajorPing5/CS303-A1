@@ -1,0 +1,107 @@
+Program: dataModifier
+Goals: This program is meant to do 5 things -
+
+	1) Read a txt file that has 10 lines and 10 integers into an array
+
+	2) Check if a specific integer exists, and if so returns the index
+
+	3) Modify the value of an integer via array index calling, returning
+	   both new and old integer values to user afterwards
+
+	4) Adds new integer to end of the array
+
+	5) Replaces the value of an integer via array index calling with
+	   either a 0 or deletes the integer entirely
+
+Input: dataFile.txt, chkInt, modify, reset, clear, i, newInt
+------------------------------------------------------------------------------
+Goal 1: Read a txt file that has 10 lines and 10 integers into an array
+
+open "dataFile.txt"
+If "dataFile.txt" does not exist in file location,
+	then notify user of error opening file
+#End-If
+
+Let k=dataFile.txt char pointer
+For i->0 to n
+	if k =/= {}
+		then array[i] = k to k + m
+	#End-If
+#End-For
+
+------------------------------------------------------------------------------
+Goal 2: Check if a specific integer exists, and if so return the index
+Input: chkInt
+
+Prompt user for chkInt
+
+For i -> 0 to n
+	if array[i] == chkInt,
+		then return i
+		else
+			i: -> i + 1
+	#End-If
+#End-For
+
+------------------------------------------------------------------------------
+Goal 3 & 5: Using array index calling, either replace the integer and return
+the old and new integer at array[i] or clear the array[i] with 0
+
+Input: i, modify, reset, clear
+
+
+Prompt user for i
+
+oldInt: -> array[i]
+
+Prompt user for "modify", "reset", or "clear"
+
+If user inputs "modify",
+	then Prompt user for newInt
+		array[i]: -> newInt
+		Prompt user with "oldInt at index i has been updated to newInt"
+	else  If user inputs "reset",
+			then  array[i]: -> 0
+				Prompt user with "oldInt at index i has been reset to 0"
+			else  array [i]: -> {}
+				Prompt user with "oldInt at index i has been deleted"
+		#End-If
+#End-If
+
+oldInt: -> {}
+newInt: -> {}
+     i: -> {}
+
+------------------------------------------------------------------------------
+Goal 4: Add a new integer to the end of the array
+
+Input: newInt
+
+For i -> 0 to m
+	If array[i] = {}
+		then i + 1
+	else  If array[i + 1] =/= {}
+		then break if loop
+		else
+			array2[2 * m]
+			For i -> 0 to m
+				array2[j]: -> array[i]
+				i: -> i + 1
+				j: -> j + 1
+			#End-For
+		#End-If
+	#End-If
+#End-For
+j: -> m + 1
+
+Prompt user "Insert new integer at index j"
+
+array2[j]: -> newInt
+array[m]
+For j -> 0 to m
+	array[i]: -> array2[j]
+	i: -> i + 1
+	j: -> j + 1
+#End-For
+
+Prompt user "Array has been expanded to 2 * m, and index j has newInt for integer."
