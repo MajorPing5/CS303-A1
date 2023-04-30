@@ -225,7 +225,7 @@ int main()
 			break;
 		}
 		case 5://Goal: Kill Program Option for User
-			break;
+			kill();
 
 		default:
 			cout << endl << "Input not recognize. Please review the options again." << endl << endl;
