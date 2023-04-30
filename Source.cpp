@@ -53,7 +53,7 @@ void changeInteger(int i, int oldInt, int list[], int& option);
 int main()
 {
 	int i = 0;
-	int k{};
+	int j{}, k{};
 	int list[200];
 	int option{}, oldInt{}, newInt{}, pointer{}, searchQuery{};
 	int length = 0;
@@ -78,9 +78,8 @@ int main()
 		inFile >> list[i];
 		k = list[i];
 		length++;
-		cout << list[i] << " ";
 	}
-	
+	list[i] = '\0';
 	cout << endl << endl;
 
 	while (option == 0)
@@ -142,8 +141,28 @@ int main()
 				cout << endl << "Is this index number correct Y/N? Array[" << i << "]" << endl << endl;
 				cin >> confirm;
 				
-				changeInteger(i, oldInt, list, option);
-			}
+				switch (confirm)
+				{
+				case 'N':
+				{
+					cout << endl << "Sorry for the mix-up. Let's try this again." << endl << endl;
+					confirm = ' ';
+					break;
+				}
+				case 'Y':
+				{
+					changeInteger(i, oldInt, list, option);
+					confirm = ' ';
+					break;
+				}
+				default:
+				{
+					cout << endl << "Input not recognize. Please try again." << endl << endl;
+					i = 0;
+					confirm = ' ';
+					break;
+				}
+				}
 			break;
 		}
 		case 3: //Goal: Clear an Integer given an array index number
@@ -167,22 +186,23 @@ int main()
 				case 'Y':
 				{
 					oldInt = list[i];
-					for (i; list[i + 1] != -858993460; ++i)
+					list[i] = '\0';
+
+					for (j = ++i ; j <= length || '\0'; j++)
 					{
-						list[i - 1] = list[i];
+						list[j - 1] = list[j];
 					}
+					length--;
 					cout << endl << "Great! At array[" << i << "], " << oldInt << " has been erased "
-						"and all values have been moved up in the array index.";
-					option = 0;
-
-					//This specifically relies on list[i] being an INTEGER array. Anything else, and this WILL NOT WORK!
-					//	Ideally, this is supposed to stop outputting any code that is not '\0', regardless of matrix size.
-
-					for (i = 0; list[i] != -858993460; i++)
+						"and all values have been moved up in the array index." << endl << endl;
+					
+					cout << "Current Array: " << endl;
+					for (i = 0; list[i] != '\0'; i++)
 					{
-						outFile << list[i] << " ";
+						cout << list[i] << " ";
 					}
-
+					cout << endl << endl;
+					option = 0;
 					break;
 				}
 				default:
