@@ -1,6 +1,7 @@
 # CS303-A1
 
 Sample .txt files have been provided for ease of access and testing.
+
 -------------------------------------------How to use-------------------------------------------
 
 Note: In order for the program to work, you must use a file with the name "dataFile.txt" and place it within your repository (image as follows). Failure to do so will result in the error "Data File not found." 
